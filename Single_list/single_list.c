@@ -15,8 +15,9 @@ struct node
 };
 
 /* Function Declaration */
-struct node *create_front(struct node *head);
-struct node *create_end(struct node *head);
+struct node *add_front(struct node *head);
+struct node *add_end(struct node *head);
+struct node *add_middle(struct node *head);
 void display(struct node* head);
 
 int main()
@@ -45,10 +46,13 @@ int main()
 				break;
 
 			case 2://Add the node at front
-				head = create_front(head);
+				head = add_front(head);
+				break;
+			case 3://Add the node at front
+				head = add_middle(head);
 				break;
 			case 4:
-				head = create_end(head);
+				head = add_end(head);
 				break;
 
 			case 9:
@@ -62,6 +66,25 @@ int main()
 	}
 
 	return 0;
+} 
+
+struct node* create_node()
+{
+	int data;
+
+	/* Allocating a memory for new node */
+	struct node *create = (struct node *)malloc(sizeof(struct node));
+	if(create == NULL) //Validation of allocation
+	{
+		printf("Unable to allocate a memory for new node\n");
+		exit(-1);
+	}
+
+	/* Add the data into the List */	
+	printf("\nEnter the data to add front\n");
+	scanf("%d",&create->data);
+
+	return create;
 }
 
 /********************************************************************
@@ -94,20 +117,10 @@ void display(struct node* head)
  *Arg(head) : holds the List
  *Return    : List [New node has been added ]
 *********************************************************************/
-struct node *create_front(struct node *head)
+struct node *add_front(struct node *head)
 {
-	int data;
-	/* Allocating a memory for new node */
-	struct node *new_node = (struct node *)malloc(sizeof(struct node));
-	if(new_node == NULL) //Validation of allocation
-	{
-		printf("Unable to allocate a memory for new node\n");
-		exit(-1);
-	}
-
-	/* Add the data into the List */	
-	printf("\nEnter the data to add front\n");
-	scanf("%d",&new_node->data);
+	/* Create a new node */
+	struct node *new_node = create_node();
 	/* Add the new node into list */
 	new_node->next = head;
 
@@ -119,21 +132,10 @@ struct node *create_front(struct node *head)
  *Arg(head) : holds the List
  *Return    : List [New node has been added ]
 *********************************************************************/
-struct node *create_end(struct node *head)
+struct node *add_end(struct node *head)
 {
-	int data;
-
-	/* Allocating a memory for new node */
-	struct node *new_node = (struct node *)malloc(sizeof(struct node));
-	if(new_node == NULL) //Validation of allocation
-	{
-		printf("Unable to allocate a memory for new node\n");
-		exit(-1);
-	}
-
-	/* Feed the data into the new node */	
-	printf("\nEnter the data into new node\n");
-	scanf("%d",&new_node->data);
+	/* Create a new node */
+	struct node *new_node = create_node();
 	new_node->next = NULL;
 
 	/* Validation of List */
@@ -152,7 +154,24 @@ struct node *create_end(struct node *head)
 	return head;	
 }
 
+struct node *add_middle(struct node *head)
+{
+	/* Create a new node */
+	struct node *new_node = create_node();
+	new_node->next = NULL;
+	
+	struct node *single_move = head;
+	struct node *double_move = head;
 
+	if(head == NULL)
+		return new_node;
+	else
+		while(double_move != NULL){
+			single_move = single->next;
+			double_move = double_move->next->next;
+		}		
+
+}
 
 
 
