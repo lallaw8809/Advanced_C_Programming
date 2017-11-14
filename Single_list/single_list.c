@@ -1,3 +1,9 @@
+/***********************************************
+ * Program for Single linked lsit
+ *
+ * Author : Lal Bosco Lawrence
+ * Date   : 04-Nov-2017
+ ************************************************/
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -8,7 +14,9 @@ struct node
 	struct node *next;
 };
 
+/* Function Declaration */
 struct node *create_front(struct node *head);
+struct node *create_end(struct node *head);
 void display(struct node* head);
 
 int main()
@@ -32,12 +40,15 @@ int main()
 
 		switch(choice)
 		{
-			case 1:
+			case 1: //Display list on the terminal
 				display(head);
 				break;
 
-			case 2:
+			case 2://Add the node at front
 				head = create_front(head);
+				break;
+			case 4:
+				head = create_end(head);
 				break;
 
 			case 9:
@@ -94,13 +105,51 @@ struct node *create_front(struct node *head)
 		exit(-1);
 	}
 
-	/* Feed the data into the new node */	
+	/* Add the data into the List */	
 	printf("\nEnter the data to add front\n");
 	scanf("%d",&new_node->data);
-	/* Feed the address into the new node */
+	/* Add the new node into list */
 	new_node->next = head;
 
 	return new_node;
+}
+
+/********************************************************************
+ *Brief     : Add the node into list at end
+ *Arg(head) : holds the List
+ *Return    : List [New node has been added ]
+*********************************************************************/
+struct node *create_end(struct node *head)
+{
+	int data;
+
+	/* Allocating a memory for new node */
+	struct node *new_node = (struct node *)malloc(sizeof(struct node));
+	if(new_node == NULL) //Validation of allocation
+	{
+		printf("Unable to allocate a memory for new node\n");
+		exit(-1);
+	}
+
+	/* Feed the data into the new node */	
+	printf("\nEnter the data into new node\n");
+	scanf("%d",&new_node->data);
+	new_node->next = NULL;
+
+	/* Validation of List */
+	if(head == NULL)
+		head = new_node;
+	else
+	{
+		struct node *current = head;
+		/* Move the list till end */
+		while(current->next != NULL)
+			current = current->next;
+		/* Add the new node into list */
+		current->next = new_node;
+	}
+
+	return head;	
 }
 
 
