@@ -5,16 +5,26 @@
 #include <malloc.h>
 #include <stdlib.h>
 
-/* Function Declaraation */
-struct node *add_middle(struct node *head);
-struct node *add_front(struct node *head);
-struct node *add_end(struct node *head);
-void display(struct node* head);
 
 struct node
 {
 	int data;
 	struct node *next;
 };
+
+/* Function Declaraation */
+void display(struct node* head);
+
+struct node *add_middle(struct node *head);
+struct node *add_front(struct node *head);
+struct node *add_end(struct node *head);
+
+struct node *delete_front(struct node *head);
+struct node *delete_end(struct node *head);
+
+struct node *reverse(struct node *head);
+
+
+
 
 #endif

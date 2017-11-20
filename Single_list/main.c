@@ -27,20 +27,32 @@ int main()
 
 		switch(choice)
 		{
-			case 1: //Display list on the terminal
+			case 1: 
+				/* Display list on the terminal */
 				display(head);
 				break;
 
-			case 2://Add the node at front
+			case 2:
 				head = add_front(head);
 				break;
-			case 3://Add the node at front
+
+			case 3:
+				/* Add the node at front */
 				head = add_middle(head);
 				break;
 			case 4:
 				head = add_end(head);
 				break;
+			case 5:
+				head = delete_front(head);
+				break;
+			case 7:
+				head = delete_end(head);
+				break;
 
+			case 8:
+				head = reverse(head);
+				break;
 			case 9:
 				exit(-1);
 
