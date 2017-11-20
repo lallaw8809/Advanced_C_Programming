@@ -5,17 +5,13 @@
  * Date   : 04-Nov-2017
  ************************************************/
 #include <stdio.h>
-#include <malloc.h>
-#include <stdlib.h>
 
-struct node
-{
-	int data;
-	struct node *next;
-};
+
+#include "single_list.h"
+
 
 /* Function Declaration */
-struct node *add_front(struct node *head);
+
 struct node *add_end(struct node *head);
 struct node *add_middle(struct node *head);
 void display(struct node* head);
@@ -112,47 +108,9 @@ void display(struct node* head)
 	}
 }
 
-/********************************************************************
- *Brief     : Add the node into list at front
- *Arg(head) : holds the List
- *Return    : List [New node has been added ]
-*********************************************************************/
-struct node *add_front(struct node *head)
-{
-	/* Create a new node */
-	struct node *new_node = create_node();
-	/* Add the new node into list */
-	new_node->next = head;
 
-	return new_node;
-}
 
-/********************************************************************
- *Brief     : Add the node into list at end
- *Arg(head) : holds the List
- *Return    : List [New node has been added ]
-*********************************************************************/
-struct node *add_end(struct node *head)
-{
-	/* Create a new node */
-	struct node *new_node = create_node();
-	new_node->next = NULL;
 
-	/* Validation of List */
-	if(head == NULL)
-		head = new_node;
-	else
-	{
-		struct node *current = head;
-		/* Move the list till end */
-		while(current->next != NULL)
-			current = current->next;
-		/* Add the new node into list */
-		current->next = new_node;
-	}
-
-	return head;	
-}
 
 struct node *add_middle(struct node *head)
 {
@@ -167,7 +125,7 @@ struct node *add_middle(struct node *head)
 		return new_node;
 	else
 		while(double_move != NULL){
-			single_move = single->next;
+			single_move = single_move->next;
 			double_move = double_move->next->next;
 		}		
 
