@@ -4,7 +4,7 @@
  * Author : Lal Bosco Lawrence
  * Date   : 04-Nov-2017
  ************************************************/
-#include "single_list.h"
+#include "main.h"
 
 int main()
 {
